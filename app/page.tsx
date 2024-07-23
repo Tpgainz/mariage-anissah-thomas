@@ -38,7 +38,8 @@ export default function Home() {
               <span className="font-bold">Prêtre:</span> Père Joseph
             </div>
             <div>
-              <span className="font-bold">Diacre:</span> Soeur Marie
+              <span className="font-bold">Assistante liturgique:</span> Sœur
+              Marie
             </div>
             <div>
               <span className="font-bold">Chant:</span> Gabrielle
