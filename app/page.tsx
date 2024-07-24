@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "lucide-react";
-import { data } from "../components/data";
+import { data } from "../lib/data";
 import Link from "next/link";
 
 export default function Home() {
@@ -33,7 +33,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4">
           <h2 className=" text-2xl font-bold">Célébrants</h2>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mb-12">
             <div>
               <span className="font-bold">Prêtre:</span> Père Joseph
             </div>
