@@ -1,3 +1,4 @@
+import { data } from "@/lib/data";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
@@ -8,7 +9,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Messe de mariage de Anissah et Thomas",
+  title: data.informations.titre,
 };
 
 export default function RootLayout({

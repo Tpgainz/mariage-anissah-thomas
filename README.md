@@ -41,3 +41,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Add a way to change the language of the booklet
 - Add a selection of bible readings for each part of the mass
+
+## Contributing
+
+If you want to contribute to this project, please create a new branch and create a pull request.

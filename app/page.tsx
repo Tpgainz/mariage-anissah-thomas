@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "lucide-react";
-import { data } from "../components/data";
+import { data } from "@/lib/data";
 import Link from "next/link";
 
 export default function Home() {
@@ -8,64 +8,91 @@ export default function Home() {
       <div className="min-h-screen flex flex-col gap-20">
         <div className="flex flex-col items-center gap-4">
           <h1 className="text-4xl font-bold whitespace-nowrap">
-            Messe de mariage
+            {data.informations.titre}
           </h1>
-          <div>Anissah et Thomas</div>
-          <div>Mercredi 24 Juillet 2024</div>
+          <div>{data.informations.date}</div>
           <div className="border-t border-muted pt-4 text-sm">
-            Eglise Saint Michel, <br />6 rue d Aboville, 29200 Brest
+            {data.informations.lieu}
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <h2 className=" text-2xl font-bold">Ordre de la messe</h2>
+          <h2 className=" text-2xl font-bold">
+            {Object.keys(data)[1].replaceAll("_", " ")}
+          </h2>
           <nav className="flex flex-col gap-2 bg-secondary p-4 rounded-lg">
-            {Object.keys(data.messe).map((key) => (
+            {Object.keys(data.Ordre_de_la_messe).map((key) => (
               <Link
                 href={`#${key}`}
                 key={key}
-                className="flex items-center gap-2"
+                className="flex items-center justify-between w-full gap-2"
               >
-                <ChevronRightIcon className="h-4 w-4" />
-                {key}
+                <span className="flex items-center gap-2">
+                  <ChevronRightIcon className="h-4 w-4" />
+                  {key}
+                </span>
+                <span className="text-sm whitespace-nowrap text-muted-foreground/70">
+                  {typeof data.Ordre_de_la_messe[key] === "number"
+                    ? data.Ordre_de_la_messe[key]
+                    : Object.entries(data.Ordre_de_la_messe[key]).reduce(
+                        (acc, [key, value]) =>
+                          acc +
+                          (typeof value === "number" ? value : value.temps),
+                        0
+                      )}
+                  &quot;
+                </span>
               </Link>
             ))}
           </nav>
         </div>
         <div className="flex flex-col gap-4">
-          <h2 className=" text-2xl font-bold">Célébrants</h2>
+          <h2 className=" text-2xl font-bold">
+            {Object.keys(data.informations)[3]}
+          </h2>
           <div className="flex flex-col gap-2">
-            <div>
-              <span className="font-bold">Prêtre:</span> Père Joseph
-            </div>
-            <div>
-              <span className="font-bold">Assistante liturgique:</span> Sœur
-              Marie
-            </div>
-            <div>
-              <span className="font-bold">Chant:</span> Gabrielle
-            </div>
-            <div>
-              <span className="font-bold">Violoncelle:</span> Maïwenn
-            </div>
+            {Object.entries(data.informations.Célébrants).map(
+              ([key, value]) => (
+                <div key={key}>
+                  <span className="font-bold">{key.replaceAll("_", " ")}:</span>{" "}
+                  {value.join(", ")}
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>
 
-      {Object.entries(data.messe).map(([key, value]) => (
+      {Object.entries(data.Ordre_de_la_messe).map(([key, value]) => (
         <section id={key} key={key} className="mb-12">
-          <h2 className="text-3xl font-bold  mb-4">{key}</h2>
+          <h2 className="text-3xl flex h-full justify-between items-center font-bold mb-8">
+            <span className="underline">{key}</span>
+            <span className=" whitespace-nowrap  text-muted-foreground/70">
+              {typeof value === "number"
+                ? value
+                : Object.entries(value).reduce(
+                    (acc, [_, value]) =>
+                      acc + (typeof value === "number" ? value : value.temps),
+                    0
+                  )}
+              &quot;
+            </span>
+          </h2>
           {Object.entries(value).map(([key, value]) => (
-            <article className="py-4 mx-auto  max-w-2xl" key={key}>
-              <p className="text-2xl font-bold mb-2">
-                {typeof value === "string" ? value : value.Titre}
+            <article className="py-2 mx-auto  max-w-2xl" key={key}>
+              <p className="text-2xl font-bold mb-2 flex justify-between">
+                {typeof value === "number" ? key : value.Titre}
+                <span className="text-sm whitespace-nowrap text-muted-foreground/70">
+                  {typeof value === "number" ? value : value.temps}&quot;
+                </span>
               </p>
-              {typeof value !== "string" && value.Contenu && (
-                <pre className="bg-secondary rounded-lg p-4 my-4 whitespace-pre-wrap font-sans">
+              {typeof value !== "number" && value.Contenu && (
+                <pre className="bg-secondary rounded-lg p-4 pb-8 my-4 whitespace-pre-wrap font-sans">
                   {value.Contenu}
                 </pre>
               )}
             </article>
           ))}
+          <div className="h-0.5 bg-muted mt-4"></div>
         </section>
       ))}
     </main>
