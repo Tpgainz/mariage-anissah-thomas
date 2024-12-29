@@ -1,4 +1,3 @@
-import { ChevronRightIcon } from "lucide-react";
 import { data } from "@/lib/data";
 import Link from "next/link";
 
@@ -27,7 +26,29 @@ export default function Home() {
                 className="flex items-center justify-between w-full gap-2"
               >
                 <span className="flex items-center gap-2">
-                  <ChevronRightIcon className="h-4 w-4" />
+                  <svg
+                    className="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        d="M9 6L15 12L9 18"
+                        stroke="#000000"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>{" "}
+                    </g>
+                  </svg>
                   {key}
                 </span>
                 <span className="text-sm whitespace-nowrap text-muted-foreground/70">

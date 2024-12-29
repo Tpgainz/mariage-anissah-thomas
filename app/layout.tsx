@@ -10,6 +10,7 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   title: data.informations.titre,
+  description: data.informations.lieu,
 };
 
 export default function RootLayout({
