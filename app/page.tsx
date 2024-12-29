@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col container max-w-3xl mx-auto p-8 xl:p-24">
       <div className="min-h-screen flex flex-col gap-20">
         <div className="flex flex-col items-center gap-4">
-          <h1 className="text-4xl font-bold whitespace-nowrap">
+          <h1 className="text-4xl font-bold mb-4 lg:whitespace-nowrap">
             {data.informations.titre}
           </h1>
           <div>{data.informations.date}</div>
